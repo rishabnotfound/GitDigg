@@ -1,0 +1,44 @@
+# Claude
+.claude
+
+# Environment
+.env
+tmp_config.txt
+
+# Build outputs
+bin/
+dist/
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
+go.work.sum
+
+# Coverage
+coverage.out
+coverage.html
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# npm
+node_modules/
+npm/gitdig/bin/gitdig
+npm/@gitdig/*/bin/
+
+# Logs
+*.log

@@ -1,0 +1,42 @@
+{
+  "name": "gitdig",
+  "version": "0.1.0",
+  "description": "Download specific files from git repositories without cloning",
+  "author": "rishabnotfound",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rishabnotfound/GitDig.git"
+  },
+  "homepage": "https://github.com/rishabnotfound/GitDig",
+  "keywords": [
+    "git",
+    "download",
+    "github",
+    "gitlab",
+    "bitbucket",
+    "cli"
+  ],
+  "bin": {
+    "gitdig": "bin/gitdig"
+  },
+  "scripts": {
+    "postinstall": "node install.js"
+  },
+  "files": [
+    "bin",
+    "install.js",
+    "index.js"
+  ],
+  "engines": {
+    "node": ">=14"
+  },
+  "optionalDependencies": {
+    "@gitdig/darwin-arm64": "0.1.0",
+    "@gitdig/darwin-x64": "0.1.0",
+    "@gitdig/linux-arm64": "0.1.0",
+    "@gitdig/linux-x64": "0.1.0",
+    "@gitdig/win32-arm64": "0.1.0",
+    "@gitdig/win32-x64": "0.1.0"
+  }
+}

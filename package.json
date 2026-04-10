@@ -1,0 +1,21 @@
+{
+  "name": "GitDig",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rishabnotfound/GitDig.git"
+  },
+  "keywords": [],
+  "author": "rishabnotfound",
+  "license": "MIT",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/rishabnotfound/GitDig/issues"
+  },
+  "homepage": "https://github.com/rishabnotfound/GitDig#readme"
+}
