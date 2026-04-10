@@ -6,11 +6,13 @@ on:
   pull_request:
     branches: [main]
 
-
 jobs:
   publish:
     name: Build and Publish
     runs-on: ubuntu-latest
+    # Only run publish steps on pushes to main (not on PRs)
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
     steps:
       - uses: actions/checkout@v4
 
@@ -47,7 +49,8 @@ jobs:
 
       - name: Prepare npm packages
         run: |
-          VERSION="${GITHUB_REF_NAME#v}"
+          # Use short commit SHA as version instead of GitHub tag
+          VERSION="0.0.0-${GITHUB_SHA::8}"
           echo "Version: $VERSION"
 
           cd npm/gitdig
@@ -104,7 +107,7 @@ jobs:
           for dir in npm/@gitdig/*/; do
             if [ -d "$dir" ]; then
               cd "$dir"
-              npm publish --access public || true
+              npm publish --access public --tag latest || true
               cd -
             fi
           done
@@ -113,6 +116,6 @@ jobs:
 
       - name: Publish main package
         working-directory: npm/gitdig
-        run: npm publish --access public
+        run: npm publish --access public --tag latest
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
