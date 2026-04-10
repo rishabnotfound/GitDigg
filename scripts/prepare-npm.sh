@@ -6,7 +6,7 @@ VERSION="${VERSION#v}"
 
 echo "Preparing npm packages v$VERSION"
 
-cd npm/gitdig
+cd npm/gitdigg
 npm version "$VERSION" --no-git-tag-version --allow-same-version
 cd ../..
 
@@ -21,16 +21,16 @@ declare -A PLATFORMS=(
 
 for npm_platform in "${!PLATFORMS[@]}"; do
   goreleaser_platform="${PLATFORMS[$npm_platform]}"
-  pkg_dir="npm/@gitdig/$npm_platform"
+  pkg_dir="npm/@gitdigg/$npm_platform"
 
   echo "Creating $npm_platform..."
 
   mkdir -p "$pkg_dir/bin"
 
   if [[ "$npm_platform" == win32* ]]; then
-    binary_name="gitdig.exe"
+    binary_name="gitdigg.exe"
   else
-    binary_name="gitdig"
+    binary_name="gitdigg"
   fi
 
   binary_src=$(find dist -name "$binary_name" -path "*${goreleaser_platform}*" -type f | head -1)
@@ -45,10 +45,10 @@ for npm_platform in "${!PLATFORMS[@]}"; do
 
   cat > "$pkg_dir/package.json" <<EOF
 {
-  "name": "@gitdig/$npm_platform",
+  "name": "@gitdigg/$npm_platform",
   "version": "$VERSION",
-  "description": "GitDig binary for $npm_platform",
-  "repository": "https://github.com/rishabnotfound/GitDig",
+  "description": "GitDigg binary for $npm_platform",
+  "repository": "https://github.com/rishabnotfound/GitDigg",
   "license": "MIT",
   "os": ["$os"],
   "cpu": ["$cpu"],

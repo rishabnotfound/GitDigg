@@ -37,8 +37,8 @@ Thumbs.db
 
 # npm
 node_modules/
-npm/gitdig/bin/gitdig
-npm/@gitdig/*/bin/
+npm/gitdigg/bin/gitdigg
+npm/@gitdigg/*/bin/
 
 # Logs
 *.log

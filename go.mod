@@ -1,4 +1,4 @@
-module github.com/rishabnotfound/gitdig
+module github.com/rishabnotfound/gitdigg
 
 go 1.21
 

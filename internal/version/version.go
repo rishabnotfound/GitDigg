@@ -13,7 +13,7 @@ var (
 )
 
 func Info() string {
-	return fmt.Sprintf("gitdig %s (%s, %s)", Version, Commit, Date)
+	return fmt.Sprintf("gitdigg %s (%s, %s)", Version, Commit, Date)
 }
 
 func Short() string {

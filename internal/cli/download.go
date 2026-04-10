@@ -7,9 +7,9 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/rishabnotfound/gitdig/internal/download"
-	"github.com/rishabnotfound/gitdig/internal/pattern"
-	"github.com/rishabnotfound/gitdig/internal/provider"
+	"github.com/rishabnotfound/gitdigg/internal/download"
+	"github.com/rishabnotfound/gitdigg/internal/pattern"
+	"github.com/rishabnotfound/gitdigg/internal/provider"
 	"github.com/spf13/viper"
 )
 

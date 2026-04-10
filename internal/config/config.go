@@ -27,7 +27,7 @@ func DefaultConfig() *Config {
 func Load() (*Config, error) {
 	cfg := DefaultConfig()
 
-	viper.SetConfigName(".gitdig")
+	viper.SetConfigName(".gitdigg")
 	viper.SetConfigType("yaml")
 
 	if home, err := os.UserHomeDir(); err == nil {
@@ -82,7 +82,7 @@ func (c *Config) GetToken(provider string) string {
 func ConfigPath() string {
 	home, err := os.UserHomeDir()
 	if err != nil {
-		return ".gitdig.yaml"
+		return ".gitdigg.yaml"
 	}
-	return filepath.Join(home, ".gitdig.yaml")
+	return filepath.Join(home, ".gitdigg.yaml")
 }

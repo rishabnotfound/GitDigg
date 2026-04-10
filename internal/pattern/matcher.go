@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/bmatcuk/doublestar/v4"
-	"github.com/rishabnotfound/gitdig/internal/provider"
+	"github.com/rishabnotfound/gitdigg/internal/provider"
 )
 
 type Matcher struct {

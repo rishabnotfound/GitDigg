@@ -1,15 +1,15 @@
 version: 2
 
-project_name: gitdig
+project_name: gitdigg
 
 before:
   hooks:
     - go mod tidy
 
 builds:
-  - id: gitdig
-    main: ./cmd/gitdig
-    binary: gitdig
+  - id: gitdigg
+    main: ./cmd/gitdigg
+    binary: gitdigg
     env:
       - CGO_ENABLED=0
     goos:
@@ -21,9 +21,9 @@ builds:
       - arm64
     ldflags:
       - -s -w
-      - -X github.com/rishabnotfound/gitdig/internal/version.Version={{.Version}}
-      - -X github.com/rishabnotfound/gitdig/internal/version.Commit={{.Commit}}
-      - -X github.com/rishabnotfound/gitdig/internal/version.Date={{.Date}}
+      - -X github.com/rishabnotfound/gitdigg/internal/version.Version={{.Version}}
+      - -X github.com/rishabnotfound/gitdigg/internal/version.Commit={{.Commit}}
+      - -X github.com/rishabnotfound/gitdigg/internal/version.Date={{.Date}}
 
 archives:
   - id: default
@@ -56,7 +56,7 @@ changelog:
 release:
   github:
     owner: rishabnotfound
-    name: GitDig
+    name: GitDigg
   prerelease: auto
   draft: false
   name_template: "v{{.Version}}"

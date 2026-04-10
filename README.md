@@ -1,37 +1,37 @@
-# GitDig
+# GitDigg
 
 Download specific files from git repositories without cloning.
 
 ## Installation
 
 ```bash
-npm install -g gitdig
+npm install -g gitdigg
 ```
 
 ## Usage
 
 ```bash
 # Download a single file
-gitdig owner/repo README.md
+gitdigg owner/repo README.md
 
 # Download a directory
-gitdig owner/repo src/utils
+gitdigg owner/repo src/utils
 
 # Download with glob patterns
-gitdig owner/repo "src/*.ts"
-gitdig owner/repo "**/*.md"
+gitdigg owner/repo "src/*.ts"
+gitdigg owner/repo "**/*.md"
 
 # Specify branch and output directory
-gitdig owner/repo --branch dev -o ./output src/
+gitdigg owner/repo --branch dev -o ./output src/
 
 # Increase download concurrency
-gitdig owner/repo -c 10 src/
+gitdigg owner/repo -c 10 src/
 
 # Flatten directory structure
-gitdig owner/repo --flat src/utils/
+gitdigg owner/repo --flat src/utils/
 
 # Interactive file browser
-gitdig owner/repo -i
+gitdigg owner/repo -i
 ```
 
 ### Interactive Mode Controls
@@ -50,9 +50,9 @@ gitdig owner/repo -i
 ### Full URLs
 
 ```bash
-gitdig https://github.com/owner/repo src/
-gitdig https://gitlab.com/owner/repo lib/
-gitdig https://bitbucket.org/owner/repo src/
+gitdigg https://github.com/owner/repo src/
+gitdigg https://gitlab.com/owner/repo lib/
+gitdigg https://bitbucket.org/owner/repo src/
 ```
 
 ## Authentication
@@ -73,12 +73,12 @@ export BITBUCKET_TOKEN=your_token
 Or use the `--token` flag:
 
 ```bash
-gitdig owner/repo --token your_token README.md
+gitdigg owner/repo --token your_token README.md
 ```
 
 ## Configuration
 
-Create `~/.gitdig.yaml`:
+Create `~/.gitdigg.yaml`:
 
 ```yaml
 output: ./downloads

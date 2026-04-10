@@ -9,12 +9,12 @@ function getPlatformPackage() {
   const arch = process.arch;
 
   const packages = {
-    "darwin-arm64": "@gitdig/darwin-arm64",
-    "darwin-x64": "@gitdig/darwin-x64",
-    "linux-arm64": "@gitdig/linux-arm64",
-    "linux-x64": "@gitdig/linux-x64",
-    "win32-arm64": "@gitdig/win32-arm64",
-    "win32-x64": "@gitdig/win32-x64",
+    "darwin-arm64": "@gitdigg/darwin-arm64",
+    "darwin-x64": "@gitdigg/darwin-x64",
+    "linux-arm64": "@gitdigg/linux-arm64",
+    "linux-x64": "@gitdigg/linux-x64",
+    "win32-arm64": "@gitdigg/win32-arm64",
+    "win32-x64": "@gitdigg/win32-x64",
   };
 
   const pkg = packages[`${platform}-${arch}`];
@@ -25,7 +25,7 @@ function getPlatformPackage() {
 }
 
 function getBinaryPath() {
-  const localBin = path.join(__dirname, "bin", "gitdig");
+  const localBin = path.join(__dirname, "bin", "gitdigg");
   if (fs.existsSync(localBin)) {
     return localBin;
   }
@@ -33,14 +33,14 @@ function getBinaryPath() {
   try {
     const pkgName = getPlatformPackage();
     const pkgPath = require.resolve(`${pkgName}/package.json`);
-    const binaryName = process.platform === "win32" ? "gitdig.exe" : "gitdig";
+    const binaryName = process.platform === "win32" ? "gitdigg.exe" : "gitdigg";
     const binary = path.join(path.dirname(pkgPath), "bin", binaryName);
     if (fs.existsSync(binary)) {
       return binary;
     }
   } catch (e) {}
 
-  throw new Error("GitDig binary not found. Try reinstalling: npm install -g gitdig");
+  throw new Error("GitDigg binary not found. Try reinstalling: npm install -g gitdigg");
 }
 
 function run() {

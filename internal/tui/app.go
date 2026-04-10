@@ -8,8 +8,8 @@ import (
 	"github.com/charmbracelet/bubbles/help"
 	"github.com/charmbracelet/bubbles/key"
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/rishabnotfound/gitdig/internal/download"
-	"github.com/rishabnotfound/gitdig/internal/provider"
+	"github.com/rishabnotfound/gitdigg/internal/download"
+	"github.com/rishabnotfound/gitdigg/internal/provider"
 )
 
 type ViewState int

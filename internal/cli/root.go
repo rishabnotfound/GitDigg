@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/rishabnotfound/gitdig/internal/provider"
-	"github.com/rishabnotfound/gitdig/internal/tui"
-	"github.com/rishabnotfound/gitdig/internal/version"
+	"github.com/rishabnotfound/gitdigg/internal/provider"
+	"github.com/rishabnotfound/gitdigg/internal/tui"
+	"github.com/rishabnotfound/gitdigg/internal/version"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -14,17 +14,17 @@ import (
 var cfgFile string
 
 var rootCmd = &cobra.Command{
-	Use:   "gitdig <repo> [paths...]",
+	Use:   "gitdigg <repo> [paths...]",
 	Short: "Download specific files from git repositories without cloning",
-	Long: `GitDig downloads specific files and directories from git repositories
+	Long: `GitDigg downloads specific files and directories from git repositories
 without cloning the entire repo. Supports GitHub, GitLab, and Bitbucket.
 
 Examples:
-  gitdig owner/repo README.md
-  gitdig owner/repo src/utils
-  gitdig owner/repo "src/*.ts"
-  gitdig owner/repo --branch dev -o ./output src/
-  gitdig owner/repo -i`,
+  gitdigg owner/repo README.md
+  gitdigg owner/repo src/utils
+  gitdigg owner/repo "src/*.ts"
+  gitdigg owner/repo --branch dev -o ./output src/
+  gitdigg owner/repo -i`,
 	Version: version.Short(),
 	RunE:    run,
 }
@@ -38,7 +38,7 @@ func Execute() {
 func init() {
 	cobra.OnInitialize(initConfig)
 
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default ~/.gitdig.yaml)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default ~/.gitdigg.yaml)")
 	rootCmd.Flags().StringP("branch", "b", "", "branch, tag, or commit")
 	rootCmd.Flags().StringP("output", "o", ".", "output directory")
 	rootCmd.Flags().IntP("concurrency", "c", 4, "parallel downloads")
@@ -62,7 +62,7 @@ func initConfig() {
 		home, err := os.UserHomeDir()
 		if err == nil {
 			viper.AddConfigPath(home)
-			viper.SetConfigName(".gitdig")
+			viper.SetConfigName(".gitdigg")
 			viper.SetConfigType("yaml")
 		}
 	}
@@ -74,7 +74,7 @@ func initConfig() {
 
 func run(cmd *cobra.Command, args []string) error {
 	if len(args) == 0 {
-		return fmt.Errorf("repository required\n\nUsage: gitdig <repo> [paths...]\nRun 'gitdig --help' for details")
+		return fmt.Errorf("repository required\n\nUsage: gitdigg <repo> [paths...]\nRun 'gitdigg --help' for details")
 	}
 
 	interactive, _ := cmd.Flags().GetBool("interactive")
@@ -83,7 +83,7 @@ func run(cmd *cobra.Command, args []string) error {
 	}
 
 	if len(args) < 2 {
-		return fmt.Errorf("path required\n\nUsage: gitdig <repo> <path> [paths...]\nOr use: gitdig <repo> -i")
+		return fmt.Errorf("path required\n\nUsage: gitdigg <repo> <path> [paths...]\nOr use: gitdigg <repo> -i")
 	}
 
 	return downloadFiles(args[0], args[1:])

@@ -31,14 +31,14 @@ jobs:
           for platform in "${platforms[@]}"; do
             GOOS="${platform%/*}"
             GOARCH="${platform#*/}"
-            output="dist/gitdig_${GOOS}_${GOARCH}"
+            output="dist/gitdigg_${GOOS}_${GOARCH}"
 
             if [ "$GOOS" = "windows" ]; then
               output="${output}.exe"
             fi
 
             echo "Building $GOOS/$GOARCH..."
-            CGO_ENABLED=0 GOOS=$GOOS GOARCH=$GOARCH go build -ldflags "-s -w" -o "$output" ./cmd/gitdig
+            CGO_ENABLED=0 GOOS=$GOOS GOARCH=$GOARCH go build -ldflags "-s -w" -o "$output" ./cmd/gitdigg
           done
 
       - name: Set up Node.js
@@ -53,7 +53,7 @@ jobs:
           VERSION="0.0.0-${GITHUB_SHA::8}"
           echo "Version: $VERSION"
 
-          cd npm/gitdig
+          cd npm/gitdigg
           npm version "$VERSION" --no-git-tag-version --allow-same-version
           cd ../..
 
@@ -68,16 +68,16 @@ jobs:
 
           for npm_platform in "${!PLATFORMS[@]}"; do
             go_platform="${PLATFORMS[$npm_platform]}"
-            pkg_dir="npm/@gitdig/$npm_platform"
+            pkg_dir="npm/@gitdigg/$npm_platform"
 
             mkdir -p "$pkg_dir/bin"
 
             if [[ "$npm_platform" == win32* ]]; then
-              binary="gitdig.exe"
-              src="dist/gitdig_${go_platform}.exe"
+              binary="gitdigg.exe"
+              src="dist/gitdigg_${go_platform}.exe"
             else
-              binary="gitdig"
-              src="dist/gitdig_${go_platform}"
+              binary="gitdigg"
+              src="dist/gitdigg_${go_platform}"
             fi
 
             if [ -f "$src" ]; then
@@ -90,10 +90,10 @@ jobs:
 
             cat > "$pkg_dir/package.json" <<EOF
           {
-            "name": "@gitdig/$npm_platform",
+            "name": "@gitdigg/$npm_platform",
             "version": "$VERSION",
-            "description": "GitDig binary for $npm_platform",
-            "repository": "https://github.com/rishabnotfound/GitDig",
+            "description": "GitDigg binary for $npm_platform",
+            "repository": "https://github.com/rishabnotfound/GitDigg",
             "license": "MIT",
             "os": ["$os"],
             "cpu": ["$cpu"],
@@ -104,7 +104,7 @@ jobs:
 
       - name: Publish platform packages
         run: |
-          for dir in npm/@gitdig/*/; do
+          for dir in npm/@gitdigg/*/; do
             if [ -d "$dir" ]; then
               cd "$dir"
               npm publish --access public --tag latest || true
@@ -115,7 +115,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish main package
-        working-directory: npm/gitdig
+        working-directory: npm/gitdigg
         run: npm publish --access public --tag latest
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

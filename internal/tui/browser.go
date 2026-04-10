@@ -6,7 +6,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/rishabnotfound/gitdig/internal/provider"
+	"github.com/rishabnotfound/gitdigg/internal/provider"
 )
 
 type BrowserItem struct {

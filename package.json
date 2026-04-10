@@ -1,5 +1,5 @@
 {
-  "name": "GitDig",
+  "name": "GitDiggg",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rishabnotfound/GitDig.git"
+    "url": "git+https://github.com/rishabnotfound/GitDigg.git"
   },
   "keywords": [],
   "author": "rishabnotfound",
   "license": "MIT",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/rishabnotfound/GitDig/issues"
+    "url": "https://github.com/rishabnotfound/GitDigg/issues"
   },
-  "homepage": "https://github.com/rishabnotfound/GitDig#readme"
+  "homepage": "https://github.com/rishabnotfound/GitDigg#readme"
 }
