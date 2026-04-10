@@ -1,28 +1,21 @@
 # Claude
 .claude
 
-# Environment
-.env
-tmp_config.txt
+# Dependencies
+node_modules/
 
-# Build outputs
-bin/
+# Build output
 dist/
 
-# Go
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
-*.test
-*.out
-go.work
-go.work.sum
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Coverage
-coverage.out
-coverage.html
+# OS files
+.DS_Store
+Thumbs.db
 
 # IDE
 .idea/
@@ -31,14 +24,19 @@ coverage.html
 *.swo
 *~
 
-# OS
-.DS_Store
-Thumbs.db
+# Environment
+.env
+.env.local
+.env.*.local
+tmp_config.txt
+
+# Test coverage
+coverage/
 
 # npm
-node_modules/
-npm/gitdigg/bin/gitdigg
-npm/@gitdigg/*/bin/
+.npm
+*.tgz
 
-# Logs
-*.log
+# Config files with secrets
+.gitdigg.yaml
+.gitdigg.yml

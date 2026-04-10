@@ -1,21 +1,58 @@
 {
-  "name": "GitDiggg",
+  "name": "gitdigg",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "Download specific files from git repositories without cloning",
+  "type": "module",
+  "bin": {
+    "gitdigg": "./bin/gitdigg.js"
   },
+  "main": "./lib/cli.js",
+  "exports": {
+    ".": "./lib/cli.js",
+    "./providers": "./providers/index.js",
+    "./downloader": "./downloader/index.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "providers",
+    "downloader",
+    "interactive",
+    "utils"
+  ],
+  "scripts": {
+    "start": "node bin/gitdigg.js",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "git",
+    "download",
+    "cli",
+    "github",
+    "gitlab",
+    "bitbucket",
+    "repository",
+    "partial-clone",
+    "sparse-checkout"
+  ],
+  "author": "rishabnotfound",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rishabnotfound/GitDigg.git"
   },
-  "keywords": [],
-  "author": "rishabnotfound",
-  "license": "MIT",
-  "type": "module",
   "bugs": {
     "url": "https://github.com/rishabnotfound/GitDigg/issues"
   },
-  "homepage": "https://github.com/rishabnotfound/GitDigg#readme"
+  "homepage": "https://github.com/rishabnotfound/GitDigg#readme",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.0.0",
+    "minimatch": "^9.0.0",
+    "ora": "^8.0.0",
+    "yaml": "^2.4.0"
+  }
 }
