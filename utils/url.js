@@ -5,9 +5,9 @@ import { PROVIDER_HOSTS } from '../lib/constants.js';
  * Supports:
  * - github.com/owner/repo
  * - https://github.com/owner/repo
+ * - https://user:token@github.com/owner/repo (with credentials)
  * - owner/repo (defaults to GitHub)
  * - gitlab.com/owner/repo
- * - bitbucket.org/owner/repo
  */
 export function parseRepoUrl(input) {
   // Normalize input
@@ -21,6 +21,7 @@ export function parseRepoUrl(input) {
       repo: url.split('/')[1],
       path: '',
       branch: null,
+      token: null,
     };
   }
 
@@ -38,6 +39,15 @@ export function parseRepoUrl(input) {
       throw new Error(`Unsupported provider: ${hostname}`);
     }
 
+    // Extract credentials if present (user:token@host or just token@host)
+    let token = null;
+    if (parsed.password) {
+      token = parsed.password;
+    } else if (parsed.username && !parsed.password) {
+      // Some formats use username as token
+      token = parsed.username;
+    }
+
     // Parse path: /owner/repo[/tree/branch/path] or /owner/repo[/blob/branch/path]
     const pathParts = parsed.pathname.split('/').filter(Boolean);
 
@@ -51,6 +61,7 @@ export function parseRepoUrl(input) {
       repo: pathParts[1].replace(/\.git$/, ''),
       path: '',
       branch: null,
+      token,
     };
 
     // Check for tree/blob path format

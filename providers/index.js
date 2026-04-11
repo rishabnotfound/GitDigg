@@ -1,12 +1,10 @@
 import { GitHubProvider } from './github.js';
 import { GitLabProvider } from './gitlab.js';
-import { BitbucketProvider } from './bitbucket.js';
 import { parseRepoUrl } from '../utils/url.js';
 
 const providers = {
   github: GitHubProvider,
   gitlab: GitLabProvider,
-  bitbucket: BitbucketProvider,
 };
 
 /**
@@ -20,7 +18,13 @@ export function createProvider(repoUrl, options = {}) {
     throw new Error(`Unknown provider: ${parsed.provider}`);
   }
 
-  const provider = new ProviderClass(parsed.owner, parsed.repo, options);
+  // Use token from URL if present, otherwise from options
+  const providerOptions = {
+    ...options,
+    token: parsed.token || options.token,
+  };
+
+  const provider = new ProviderClass(parsed.owner, parsed.repo, providerOptions);
 
   return {
     provider,
@@ -56,7 +60,6 @@ export function detectProvider(url) {
 export {
   GitHubProvider,
   GitLabProvider,
-  BitbucketProvider,
 };
 
 export default {

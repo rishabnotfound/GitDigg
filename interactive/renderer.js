@@ -1,4 +1,5 @@
 import chalk from 'chalk';
+import { Title } from '../lib/constants.js';
 
 /**
  * Terminal renderer for interactive mode
@@ -61,7 +62,7 @@ export class Renderer {
    * Render the header
    */
   renderHeader(repo, branch, selectedCount) {
-    const title = chalk.bold.cyan(`gitdigg`) + chalk.dim(' - Interactive Mode');
+    const title = chalk.bold.cyan(Title) + chalk.dim(' - Interactive Mode');
     const repoInfo = chalk.yellow(repo) + chalk.dim('@') + chalk.green(branch);
     const selection = selectedCount > 0
       ? chalk.magenta(` [${selectedCount} selected]`)

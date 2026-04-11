@@ -8,6 +8,8 @@ Download specific files from git repositories without cloning.
 npm install -g gitdigg
 ```
 
+Requires Node.js 18+.
+
 ## Usage
 
 ```bash
@@ -34,58 +36,84 @@ gitdigg owner/repo --flat src/utils/
 gitdigg owner/repo -i
 ```
 
+### Options
+
+```
+-b, --branch <branch>  Branch, tag, or commit to download from
+-o, --output <dir>     Output directory (default: ".")
+-i, --interactive      Interactive mode - browse and select files
+-c, --concurrency <n>  Number of concurrent downloads (default: 5)
+-t, --token <token>    Authentication token for private repositories
+--flat                 Download all files without preserving structure
+-v, --verbose          Verbose output
+-q, --quiet            Suppress output
+--retries <n>          Number of retries for failed downloads (default: 3)
+```
+
 ### Interactive Mode Controls
 
 | Key | Action |
 |-----|--------|
-| `↑/k` `↓/j` | Navigate |
-| `←/h` `→/l` | Collapse/Expand |
+| `↑` `↓` | Navigate |
+| `→` | Expand directory |
+| `←` | Collapse directory |
 | `Space` | Toggle selection |
-| `a` | Select all |
-| `A` | Deselect all |
+| `a` | Toggle select all |
+| `e` | Toggle expand all |
 | `/` | Search |
-| `d` | Download |
-| `q` | Quit |
+| `Enter` | Download selected |
+| `q` / `Esc` | Quit |
 
 ### Full URLs
 
 ```bash
 gitdigg https://github.com/owner/repo src/
 gitdigg https://gitlab.com/owner/repo lib/
-gitdigg https://bitbucket.org/owner/repo src/
 ```
 
 ## Authentication
 
-For private repositories:
+For private repositories, use one of these methods:
+
+### 1. Token in URL (easiest)
+
+```bash
+gitdigg https://user:TOKEN@github.com/owner/repo README.md
+gitdigg https://user:TOKEN@gitlab.com/owner/repo README.md
+```
+
+### 2. Command line flag
+
+```bash
+gitdigg owner/repo README.md --token YOUR_TOKEN
+```
+
+### 3. Environment variables
 
 ```bash
 # GitHub
 export GITHUB_TOKEN=your_token
+# or
+export GH_TOKEN=your_token
 
 # GitLab
 export GITLAB_TOKEN=your_token
-
-# Bitbucket
-export BITBUCKET_TOKEN=your_token
-```
-
-Or use the `--token` flag:
-
-```bash
-gitdigg owner/repo --token your_token README.md
 ```
 
 ## Configuration
 
-Create `~/.gitdigg.yaml`:
+Create `~/.gitdigg.yaml` for persistent settings:
 
 ```yaml
-output: ./downloads
 concurrency: 8
-flat: false
+retries: 3
+outputDir: ./downloads
+
+tokens:
+  github: your_github_token
+  gitlab: your_gitlab_token
 ```
 
 ## License
 
-MIT
+[MIT](LICENSE)
