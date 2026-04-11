@@ -6,7 +6,12 @@
       />
     </p>
 
-Download specific files from git repositories without cloning.
+<p align="center">
+  Download specific files from git repositories without cloning.
+  <br />
+  <br><a href="https://gitdigg.vercel.app/">SITE Link</a></br><a href="https://www.npmjs.com/package/gitdigg">NPM Link</a>
+</p>
+
 
 ## Installation
 
@@ -128,5 +133,7 @@ tokens:
 ```
 
 ## License
+
+Built with ❤️ by Rishab
 
 [MIT](LICENSE)
