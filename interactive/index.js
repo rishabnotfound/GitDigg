@@ -12,8 +12,8 @@ export async function startInteractive(provider, owner, repo, branch, options = 
   const renderer = new Renderer();
   const input = new InputHandler();
 
-  // Calculate view height (leave room for header/footer)
-  const viewHeight = Math.max(10, renderer.height - 8);
+  // Calculate view height (leave room for header/footer - logo is ~10 lines, footer is ~3)
+  const viewHeight = Math.max(10, renderer.height - 16);
 
   // Fetch repository tree
   renderer.clear();

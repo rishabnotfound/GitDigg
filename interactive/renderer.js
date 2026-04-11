@@ -62,13 +62,22 @@ export class Renderer {
    * Render the header
    */
   renderHeader(repo, branch, selectedCount) {
-    const title = chalk.bold.cyan(Title) + chalk.dim(' - Interactive Mode');
+    // Render ASCII art logo line by line
+    const logoLines = Title.split('\n');
+    for (const line of logoLines) {
+      if (line.trim()) {
+        this.writeLine(chalk.bold.cyan(line));
+      }
+    }
+
+    this.writeLine(chalk.dim('Interactive Mode'));
+    this.writeLine();
+
     const repoInfo = chalk.yellow(repo) + chalk.dim('@') + chalk.green(branch);
     const selection = selectedCount > 0
       ? chalk.magenta(` [${selectedCount} selected]`)
       : '';
 
-    this.writeLine(title);
     this.writeLine(repoInfo + selection);
     this.writeLine(chalk.dim('\u2500'.repeat(Math.min(this.width, 60))));
   }
