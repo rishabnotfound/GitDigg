@@ -8,12 +8,6 @@
 
 Download specific files from git repositories without cloning.
 
-## Preview
-
-<p align="center">
-    <img src="./assets/preview.gif" width="900" height="400" />
-</p>
-
 ## Installation
 
 ```bash
@@ -21,6 +15,13 @@ npm install -g gitdigg
 ```
 
 Requires Node.js 18+.
+
+## Preview
+
+<p align="center">
+    <img src="./assets/preview.gif" width="900" height="400" />
+    <img width="1203" height="679" alt="Screenshot 2026-04-12 at 1 05 55 AM" src="https://github.com/user-attachments/assets/e74091a8-1c4b-4ff6-b8a5-92220d86456b" />
+</p>
 
 ## Usage
 
