@@ -8,10 +8,11 @@
 
 <p align="center">
   Download specific files from git repositories without cloning.
+  <br /><br />
+  <a href="https://gitdigg.vercel.app/">SITE Link</a>
   <br />
-  <br><a href="https://gitdigg.vercel.app/">SITE Link</a></br><a href="https://www.npmjs.com/package/gitdigg">NPM Link</a>
+  <a href="https://www.npmjs.com/package/gitdigg">NPM Link</a>
 </p>
-
 
 ## Installation
 
