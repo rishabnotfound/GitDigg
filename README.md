@@ -1,6 +1,18 @@
-# GitDigg
+<p align="center">
+      <img
+        src="./assets/logo.png"
+        width="200"
+        height="200"
+      />
+    </p>
 
 Download specific files from git repositories without cloning.
+
+## Preview
+
+<p align="center">
+    <img src="./assets/preview.gif" width="900" height="400" />
+</p>
 
 ## Installation
 
