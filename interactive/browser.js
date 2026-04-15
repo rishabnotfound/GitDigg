@@ -16,14 +16,52 @@ export class FileBrowser {
   }
 
   /**
+   * GitHub-style sort comparator
+   * Rules: directories before files, then alphabetical (case-insensitive)
+   */
+  githubSort(a, b) {
+    const partsA = a.path.split('/');
+    const partsB = b.path.split('/');
+
+    // Compare each level
+    const minLen = Math.min(partsA.length, partsB.length);
+
+    for (let i = 0; i < minLen; i++) {
+      const nameA = partsA[i].toLowerCase();
+      const nameB = partsB[i].toLowerCase();
+
+      if (nameA === nameB) continue;
+
+      // Check if this is the last part for either item
+      const isLastA = i === partsA.length - 1;
+      const isLastB = i === partsB.length - 1;
+
+      // Determine if each is a directory at this level
+      const isDirA = !isLastA || a.type === 'tree';
+      const isDirB = !isLastB || b.type === 'tree';
+
+      // Directories come before files
+      if (isDirA && !isDirB) return -1;
+      if (!isDirA && isDirB) return 1;
+
+      // Both same type, sort alphabetically
+      return nameA.localeCompare(nameB);
+    }
+
+    // If we get here, one path is a prefix of the other
+    // Shorter path (parent directory) comes first
+    return partsA.length - partsB.length;
+  }
+
+  /**
    * Build hierarchical tree from flat list
    */
   buildTree() {
     this.nodes = [];
     this.nodeMap = new Map();
 
-    // Sort items by path
-    const sortedItems = [...this.tree].sort((a, b) => a.path.localeCompare(b.path));
+    // Sort items GitHub-style: directories first, then alphabetical
+    const sortedItems = [...this.tree].sort((a, b) => this.githubSort(a, b));
 
     // Create nodes with depth info
     for (const item of sortedItems) {
